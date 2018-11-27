@@ -40,7 +40,7 @@ int main() {
 
             int *tmp_state = (int *)malloc(sizeof(int) * n_points);
             memcpy(tmp_state, state, sizeof(int) * n_points);
-            random_swap(tmp_state, n_points);
+            random_process(tmp_state, n_points);
             double cost_new = cost(points, tmp_state, n_points);
             if (cost_new < C) {
                 C = cost_new;
@@ -69,7 +69,8 @@ int main() {
     printf("\n");
 
     for (int i = 0; i < n_points; i++) {
-        printf("# %d,%d\n", points[best_state[i]]->x, points[best_state[i]]->y);
+        printf("# %.3f,%.3f\n", points[best_state[i]]->x,
+            points[best_state[i]]->y);
     }
 
     printf("\n# %.3f/%.3f\n", cost(points, best_state, n_points), best);

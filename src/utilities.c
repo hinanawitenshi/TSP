@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <string.h>
 
 #include "utilities.h"
 
@@ -26,8 +27,9 @@ double load_tsp(const char *path, Point ***points, int *size) {
     int index = 0;
 
     while (!feof(f)) {
-        int num, x, y;
-        fscanf(f, "%d%d%d", &num, &x, &y);
+        int num;
+        double x, y;
+        fscanf(f, "%d%lf%lf", &num, &x, &y);
         (*points)[index] = (Point *)malloc(sizeof(Point));
         (*points)[index]->x = x;
         (*points)[index]->y = y;
@@ -51,6 +53,18 @@ void knuth_shuffle(int *arr, int size) {
 
 }
 
+// random_process randomly picks a function
+// to process the arr.
+void random_process(int *arr, int size) {
+
+    if (rand() % 2) {
+        random_swap(arr, size);
+    } else {
+        random_reverse(arr, size);
+    }
+
+}
+
 // random_swap randomly swaps two elements
 // in an integer arr.
 void random_swap(int *arr, int size) {
@@ -60,6 +74,21 @@ void random_swap(int *arr, int size) {
     int tmp = arr[posX];
     arr[posX] = arr[posY];
     arr[posY] = tmp;
+
+}
+
+// random_reverse randomly reverses a slice of
+// an array.
+void random_reverse(int *arr, int size) {
+
+    int posX = rand() % (size - 1);
+    int posY = rand() % (size - posX) + posX;
+    int len = posY - posX + 1;
+    int *tmp = (int *)malloc(sizeof(int) * len);
+    for (int i = 0; i < len; i++)
+        tmp[i] = arr[posY - i];
+    memcpy(arr + posX, tmp, sizeof(int) * len);
+    free(tmp);
 
 }
 

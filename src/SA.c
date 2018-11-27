@@ -10,8 +10,8 @@
 #define TEMP 100
 #define FACTOR 0.99
 #define N_EXT 1000
-#define N_INN 100000
-#define TSP_PATH "res/att48.tsp"
+#define N_INN 10000
+#define TSP_PATH "res/a280.tsp"
 
 boolean metropolis(double cost_current, double cost_next, double T);
 
@@ -43,7 +43,7 @@ int main() {
         for (int j = 0; j < N_INN; j++) {
             int *tmp_state = (int *)malloc(sizeof(int) * n_points);
             memcpy(tmp_state, state, sizeof(int) * n_points);
-            random_swap(tmp_state, n_points);
+            random_process(tmp_state, n_points);
             double cost_next = cost(points, tmp_state, n_points);
             if (metropolis(C, cost_next, T)) {
                 free(state);
@@ -65,7 +65,7 @@ int main() {
     printf("\n");
 
     for (int i = 0; i < n_points; i++) {
-        printf("# %d,%d\n", points[state[i]]->x, points[state[i]]->y);
+        printf("# %.3f,%.3f\n", points[state[i]]->x, points[state[i]]->y);
     }
 
     printf("\n# %.3f/%.3f\n", C, best);
@@ -81,10 +81,9 @@ int main() {
 
 boolean metropolis(double cost_current, double cost_next, double T) {
 
-    if (abs(T) < 1e-15)
+    if (fabs(T) < 1e-15)
         return cost_next < cost_current;
     double random = rand() / (double)RAND_MAX;
     return fmin(1, exp((cost_current - cost_next) / T)) >= random;
 
 }
-
