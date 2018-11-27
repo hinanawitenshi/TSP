@@ -23,4 +23,4 @@ $ make SA > result.txt
 $ python src/display.py result.txt
 ```
 
-The python snippet requires `matplotlib` and `numpy` to be installed.
+The python snippet requires `matplotlib` and `numpy` to be installed, only python 3.5 and python 3.7 is tested.
