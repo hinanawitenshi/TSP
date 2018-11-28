@@ -57,9 +57,6 @@ int main() {
         }
         T *= 0.99;
         printf("%d,%.3f,%.3f\n", i, T, C);
-        // if (age > N_INN * 10) {
-        //     break;
-        // }
     }
 
     printf("\n");
