@@ -6,7 +6,7 @@
 
 #include "utilities.h"
 
-#define RESTART_TIMES 10000
+#define RESTART_TIMES 100
 #define TERMINATED 1e5
 
 int main() {
@@ -20,7 +20,7 @@ int main() {
 
     Point **points = NULL;
     int n_points = 0;
-    double best = load_tsp("res/att48.tsp", &points, &n_points);
+    double best = load_tsp("res/a280.tsp", &points, &n_points);
 
     int *state = (int *)malloc(sizeof(int) * n_points);
     for (int i = 0; i < n_points; i++) state[i] = i;
@@ -72,6 +72,7 @@ int main() {
         printf("# %.3f,%.3f\n", points[best_state[i]]->x,
             points[best_state[i]]->y);
     }
+    printf("# %.3f,%.3f\n", points[best_state[0]]->x, points[best_state[0]]->y);
 
     printf("\n# %.3f/%.3f\n", cost(points, best_state, n_points), best);
     printf("# %.3f\n", (double)(clock() - start_clock)/CLOCKS_PER_SEC);

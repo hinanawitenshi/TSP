@@ -102,6 +102,9 @@ double cost(Point **points, int *perm, int size) {
         Point *prev_p = points[perm[i - 1]];
         distance += sqrt(pow(p->x - prev_p->x, 2) + pow(p->y - prev_p->y, 2));
     }
+    Point *p = points[perm[size - 1]];
+    Point *prev_p = points[perm[0]];
+    distance += sqrt(pow(p->x - prev_p->x, 2) + pow(p->y - prev_p->y, 2));
     return distance;
 
 }

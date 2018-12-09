@@ -64,6 +64,7 @@ int main() {
     for (int i = 0; i < n_points; i++) {
         printf("# %.3f,%.3f\n", points[state[i]]->x, points[state[i]]->y);
     }
+    printf("# %.3f,%.3f\n", points[state[0]]->x, points[state[0]]->y);
 
     printf("\n# %.3f/%.3f\n", C, best);
     printf("# %.3f\n", (double)(clock() - start_clock)/CLOCKS_PER_SEC);
