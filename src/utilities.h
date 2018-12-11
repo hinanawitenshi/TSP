@@ -11,6 +11,7 @@ typedef struct {
 
 typedef int boolean;
 
+boolean metropolis(double cost_current, double cost_next, double T);
 double load_tsp(const char *path, Point ***points, int *size);
 void knuth_shuffle(int *arr, int size);
 void random_process(int *arr, int size);

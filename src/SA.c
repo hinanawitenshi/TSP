@@ -76,12 +76,3 @@ int main() {
     return 0;
 
 }
-
-boolean metropolis(double cost_current, double cost_next, double T) {
-
-    if (fabs(T) < 1e-15)
-        return cost_next < cost_current;
-    double random = rand() / (double)RAND_MAX;
-    return fmin(1, exp((cost_current - cost_next) / T)) >= random;
-
-}
